@@ -1,0 +1,33 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.weather-upper-part {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 200px;
+}
+
+.weather-upper-part p,
+.weather-upper-part img {}
+
+.weather-upper-part img {
+    align-self: flex-end;
+    height: 80px;
+}
+
+.weather-lower-part {
+    width: 400px;
+    height: 200px;
+}

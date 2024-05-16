@@ -13,8 +13,8 @@ export default async function weatherApi(location) {
 function processApiData(data) {
   const conditionText = data.current.condition.text;
   const conditionIcon = data.current.condition.icon;
-  const celsius = data.current.temp_c;
-  const fahrenheit = data.current.temp_f;
+  const celsius = "ºC " + data.current.temp_c;
+  const fahrenheit = "ºF " + data.current.temp_f;
   const location = data.location.name;
   const date = data.location.localtime;
   return { conditionText, conditionIcon, celsius, fahrenheit, location, date };
