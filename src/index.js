@@ -1,5 +1,6 @@
-import changeTemp from "./changeTemp";
 import "./styles.css";
+import "modern-normalize/modern-normalize.css";
+import changeTemp from "./changeTemp";
 import weatherApi from "./weatherApi";
 
 const locationElement = document.querySelector(".location");
@@ -10,6 +11,8 @@ const dateElement = document.querySelector(".date");
 const celsiusBtn = document.querySelector(".celsius");
 const fahrenBtn = document.querySelector(".fahren");
 
+const container = document.querySelector(".container");
+
 async function initialState() {
   const weather = await weatherApi("Milan");
   locationElement.textContent = weather.location;
@@ -19,6 +22,7 @@ async function initialState() {
   dateElement.textContent = weather.date;
 
   changeTemp(weather.celsius, weather.fahrenheit, tempElement, celsiusBtn, fahrenBtn);
+  changeBackground(weather.conditionText);
 }
 
 async function userInput() {
@@ -48,7 +52,31 @@ async function userInput() {
 
     console.log(celsius, conditionText, conditionIcon, fahrenheit, location, date);
     changeTemp(celsius, fahrenheit, tempElement, celsiusBtn, fahrenBtn);
+    changeBackground(conditionText);
   });
+}
+
+function changeBackground(condition) {
+  container.classList.remove("sunny", "cloudy", "rainy", "clear");
+  if (condition === "Sunny") {
+    container.classList.add("sunny");
+  } else if (condition === "Cloudy") {
+    container.classList.add("cloudy");
+  } else if (
+    condition === "Patchy rain possible" ||
+    condition === "Patchy light rain" ||
+    condition === "Light rain" ||
+    condition === "Moderate rain at times" ||
+    condition === "Moderate rain" ||
+    condition === "Heavy rain at times" ||
+    condition === "Heavy rain" ||
+    condition === "Light freezing rain" ||
+    condition === "Moderate or heavy freezing rain"
+  ) {
+    container.classList.add("rainy");
+  } else if (condition === "Clear") {
+    container.classList.add("clear");
+  }
 }
 
 initialState();
