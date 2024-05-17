@@ -1,6 +1,6 @@
 export default async function weatherApi(location) {
   const response = await fetch(
-    "http://api.weatherapi.com/v1/current.json?key=14d573de68f64a588bf221634241505&q=" + location,
+    "https://api.weatherapi.com/v1/current.json?key=14d573de68f64a588bf221634241505&q=" + location,
     {
       mode: "cors",
     }
